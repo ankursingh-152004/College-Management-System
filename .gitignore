@@ -1,0 +1,13 @@
+# Eclipse
+.metadata/
+.settings/
+
+# Build output
+bin/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
