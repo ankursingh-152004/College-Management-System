@@ -33,7 +33,7 @@ public class managementloginapplication extends HttpServlet {
 		try {
 			 Class.forName("com.mysql.cj.jdbc.Driver");
 	            Connection connection = DriverManager.getConnection(
-	                    "jdbc:mysql://localhost:3306/College_Development", "root", "Ankur.Singh2004");
+	                    "jdbc:mysql://localhost:3306/College_Development", "root", "#");
 			PreparedStatement p= connection.prepareStatement("select * from management where user_id =? and password=?;");
 			 p.setString(1, uid);
 			 p.setInt(2, pass);
