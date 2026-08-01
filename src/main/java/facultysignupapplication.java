@@ -34,7 +34,7 @@ public class facultysignupapplication extends HttpServlet {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 	        Connection connection = DriverManager.getConnection(
-	                "jdbc:mysql://localhost:3306/College_Development", "root", "#");
+	                "jdbc:mysql://localhost:3306/College_Development", "root", "Ankur.Singh2004");
 		PreparedStatement p= connection.prepareStatement("insert into faculty values(?,?,?);");
 		p.setString(1, uid);
 		p.setString(2, uname);
