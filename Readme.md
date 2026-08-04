@@ -1,7 +1,8 @@
 # College Management System
 
 A web-based College Management System developed using Java, JSP, Servlets, JDBC, MySQL, and Apache Tomcat. The system simplifies college administration by providing separate modules for students, faculty, and administrators to manage academic and administrative activities efficiently.
-
+<br>
+<b>Live Link </b> https://college-management-system-kxeh.onrender.com
 ## Features
 
 - Student Registration & Login
