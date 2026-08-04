@@ -1,12 +1,13 @@
-
+import com.college.util.DBConnection;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.*;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 
 /**
@@ -33,15 +34,18 @@ public class studentsignupapplication extends HttpServlet {
 		String uname=request.getParameter("b");
 		int pass=Integer.parseInt(request.getParameter("c"));
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-	        Connection connection = DriverManager.getConnection(
-	                "jdbc:mysql://localhost:3306/College_Development", "root", "#");
-		PreparedStatement p= connection.prepareStatement("insert into student values(?,?,?);");
+			Connection connection = DBConnection.getConnection();
+		PreparedStatement p= connection.prepareStatement("insert into student(user_id, username, password) values(?,?,?);");
 		p.setString(1, uid);
 		p.setString(2, uname);
 		p.setInt(3, pass);
-		p.execute();
-		response.sendRedirect("signupsuccess.jsp");
+		int rows = p.executeUpdate();
+
+		if (rows > 0) {
+		    response.sendRedirect("signupsuccess.jsp");
+		} else {
+		    response.getWriter().println("Signup Failed");
+		}
 		/* obj.println("Student Signed Up Successfully...."); */
 		} catch (Exception e) {
 			obj.println(e);

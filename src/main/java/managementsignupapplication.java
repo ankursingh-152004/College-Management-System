@@ -1,4 +1,4 @@
-
+import com.college.util.DBConnection;
 import java.sql.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -32,15 +32,19 @@ public class managementsignupapplication extends HttpServlet {
 	String uname=request.getParameter("b");
 	int pass=Integer.parseInt(request.getParameter("c"));
 	try {
-		Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/College_Development", "root", "#");
-	PreparedStatement p= connection.prepareStatement("insert into management values(?,?,?);");
-	p.setString(1, uid);
-	p.setString(2, uname);
-	p.setInt(3, pass);
-	p.execute();
-	response.sendRedirect("signupsuccess.jsp");
+		Connection connection = DBConnection.getConnection();
+
+		PreparedStatement p= connection.prepareStatement("insert into management(user_id, username, password) values(?,?,?);");
+		p.setString(1, uid);
+		p.setString(2, uname);
+		p.setInt(3, pass);
+		int rows = p.executeUpdate();
+
+		if (rows > 0) {
+		    response.sendRedirect("signupsuccess.jsp");
+		} else {
+		    response.getWriter().println("Signup Failed");
+		}
 	} catch (Exception e) {
 		obj.println(e);
 		

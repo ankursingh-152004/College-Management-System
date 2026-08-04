@@ -1,5 +1,5 @@
 
-
+import com.college.util.DBConnection;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 
 /**
  * Servlet implementation class retrieve
@@ -35,8 +35,7 @@ public class retrieve extends HttpServlet {
 		if(ty.equals("Student Display")) {
 			PrintWriter Ankur = response.getWriter();
 			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-			    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/college_development", "root", "#");
+				Connection connection = DBConnection.getConnection();
 			    PreparedStatement p = connection.prepareStatement("select * from student;");
 			    ResultSet rs = p.executeQuery();
 			    Ankur.println("user_id \t\t password");
@@ -53,8 +52,7 @@ public class retrieve extends HttpServlet {
 		}else if(ty.equals("Faculty Display")) {
 			PrintWriter Ankur = response.getWriter();
 			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-			    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/college_development", "root", "#");
+				Connection connection = DBConnection.getConnection();
 			    PreparedStatement p = connection.prepareStatement("select * from faculty;");
 			    ResultSet rs = p.executeQuery();
 			    Ankur.println("user_id \t\t password");
@@ -72,8 +70,7 @@ public class retrieve extends HttpServlet {
 		else  {
 			PrintWriter Ankur = response.getWriter();
 			try {
-				Class.forName("com.mysql.cj.jdbc.Driver");
-			    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/college_development", "root", "#");
+				Connection connection = DBConnection.getConnection();
 			    PreparedStatement p = connection.prepareStatement("select * from management;");
 			    ResultSet rs = p.executeQuery();
 			    Ankur.println("user_id \t\t password");

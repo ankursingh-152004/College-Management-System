@@ -1,5 +1,7 @@
 import java.sql.*;
 
+import com.college.util.DBConnection;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -31,9 +33,8 @@ public class managementloginapplication extends HttpServlet {
 		String uid=request.getParameter("a");
 		int pass=Integer.parseInt(request.getParameter("c"));
 		try {
-			 Class.forName("com.mysql.cj.jdbc.Driver");
-	            Connection connection = DriverManager.getConnection(
-	                    "jdbc:mysql://localhost:3306/College_Development", "root", "#");
+			Connection connection = DBConnection.getConnection();
+
 			PreparedStatement p= connection.prepareStatement("select * from management where user_id =? and password=?;");
 			 p.setString(1, uid);
 			 p.setInt(2, pass);
